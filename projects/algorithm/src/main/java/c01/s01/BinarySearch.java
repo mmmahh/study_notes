@@ -32,11 +32,11 @@ public class BinarySearch {
         return -1;
     }
 
-    public static int binarySearchLeft(int[] a, int v) {
-        return binarySearchLeft(a, v, 0, a.length - 1);
+    public static int binarySearch(int[] a, int v, boolean left) {
+        return binarySearch(a, v, 0, a.length - 1, left);
     }
 
-    private static int binarySearchLeft(int[] a, int v, int lo, int hi) {
+    private static int binarySearch(int[] a, int v, int lo, int hi, boolean left) {
         if (lo > hi) {
             return -1;
         }
@@ -49,16 +49,22 @@ public class BinarySearch {
             }
         }
 
+        // lo + 1 = hi时，mid=lo，会导致mid~hi没有减小
         int mid = lo + (hi - lo) / 2;
-        if (a[mid] == v) {
-            return binarySearchLeft(a, v, lo, mid);
+        if (!left) {
+            mid = lo + (hi - lo + 1) / 2;
         }
-
         if (a[mid] < v) {
-            return binarySearchLeft(a, v, mid + 1, hi);
+            return binarySearch(a, v, mid + 1, hi, left);
+        } else if (a[mid] > v) {
+            return binarySearch(a, v, lo, mid - 1, left);
+        } else {
+            if (left) {
+                return binarySearch(a, v, lo, mid, true);
+            } else {
+                return binarySearch(a, v, mid, hi, false);
+            }
         }
-
-        return binarySearchLeft(a, v, lo, mid -1);
     }
 
 }

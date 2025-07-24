@@ -41,7 +41,7 @@
 
 #### 二分查找最左值（最右值）
 ```java
-    private static int binarySearchLeft(int[] a, int v, int lo, int hi) {
+    private static int binarySearch(int[] a, int v, int lo, int hi, boolean left) {
         if (lo > hi) {
             return -1;
         }
@@ -54,22 +54,31 @@
             }
         }
 
+        // lo + 1 = hi时，mid=lo，会导致mid~hi没有减小
         int mid = lo + (hi - lo) / 2;
-        if (a[mid] == v) {
-            return binarySearchLeft(a, v, lo, mid);
+        if (!left) {
+          mid = lo + (hi - lo + 1) / 2;
         }
-
         if (a[mid] < v) {
-            return binarySearchLeft(a, v, mid + 1, hi);
+            return binarySearch(a, v, mid + 1, hi, left);
+        } else if (a[mid] > v) {
+            return binarySearch(a, v, lo, mid - 1, left);
+        } else {
+            if (left) {
+                return binarySearch(a, v, lo, mid, true);
+            } else {
+                return binarySearch(a, v, mid, hi, false);
+            }
         }
-
-        return binarySearchLeft(a, v, lo, mid -1);
     }
 ```
 
 ### 习题
 #### 1.洗牌算法
-
+> 这里是为洗牌牌组推荐的方案：<br>
+> （i）获取一个密码学安全的伪随机数生成器 <br>
+> （ii）为每张牌分配一个随机的 64bit 位的数字 <br>
+> （iii）根据它们的数字对牌进行排序。
 
 
 ## 1.2 数据抽象

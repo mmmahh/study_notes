@@ -34,21 +34,35 @@ public class BinarySearchTest {
     }
 
     @Test
-    public void testBinarySearchLeft() {
+    public void testBinarySearch2() {
         int[] a = {0, 1};
-        Assertions.assertEquals(BinarySearch.binarySearchLeft(a, 0), 0);
-        Assertions.assertEquals(BinarySearch.binarySearchLeft(a, 1), 1);
-        Assertions.assertEquals(BinarySearch.binarySearchLeft(a, 2), -1);
+        Assertions.assertEquals(BinarySearch.binarySearch(a, 0, true), 0);
+        Assertions.assertEquals(BinarySearch.binarySearch(a, 1, true), 1);
+        Assertions.assertEquals(BinarySearch.binarySearch(a, 2, true), -1);
+        Assertions.assertEquals(BinarySearch.binarySearch(a, 0, false), 0);
+        Assertions.assertEquals(BinarySearch.binarySearch(a, 1, false), 1);
+        Assertions.assertEquals(BinarySearch.binarySearch(a, 2, false), -1);
+
 
         int[] a1 = {0};
-        Assertions.assertEquals(BinarySearch.binarySearchLeft(a1, 0), 0);
-        Assertions.assertEquals(BinarySearch.binarySearchLeft(a1, 1), -1);
+        Assertions.assertEquals(BinarySearch.binarySearch(a1, 0, true), 0);
+        Assertions.assertEquals(BinarySearch.binarySearch(a1, 1, true), -1);
+        Assertions.assertEquals(BinarySearch.binarySearch(a1, 0, false), 0);
+        Assertions.assertEquals(BinarySearch.binarySearch(a1, 1, false), -1);
 
         int[] a2 = {0,0,0,1,1,1,3,3,3,3};
-        Assertions.assertEquals(BinarySearch.binarySearchLeft(a2, 0), 0);
-        Assertions.assertEquals(BinarySearch.binarySearchLeft(a2, 1), 3);
-        Assertions.assertEquals(BinarySearch.binarySearchLeft(a2, 2), -1);
-        Assertions.assertEquals(BinarySearch.binarySearchLeft(a2, 3), 6);
+        Assertions.assertEquals(BinarySearch.binarySearch(a2, 0, true), 0);
+        Assertions.assertEquals(BinarySearch.binarySearch(a2, 1, true), 3);
+        Assertions.assertEquals(BinarySearch.binarySearch(a2, 2, true), -1);
+        Assertions.assertEquals(BinarySearch.binarySearch(a2, 3, true), 6);
+        Assertions.assertEquals(BinarySearch.binarySearch(a2, 0, false), 2);
+        Assertions.assertEquals(BinarySearch.binarySearch(a2, 1, false), 5);
+        Assertions.assertEquals(BinarySearch.binarySearch(a2, 2, false), -1);
+        Assertions.assertEquals(BinarySearch.binarySearch(a2, 3, false), 9);
+
+        int[] a3 = {};
+        Assertions.assertEquals(BinarySearch.binarySearch(a3, 0, true), -1);
+        Assertions.assertEquals(BinarySearch.binarySearch(a3, 0, false), -1);
     }
 
 }
