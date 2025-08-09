@@ -50,10 +50,13 @@ public class BinarySearch {
         }
 
         // lo + 1 = hi时，mid=lo，会导致mid~hi没有减小
-        int mid = lo + (hi - lo) / 2;
-        if (!left) {
+        int mid;
+        if (left) {
+            mid = lo + (hi - lo) / 2;
+        } else {
             mid = lo + (hi - lo + 1) / 2;
         }
+
         if (a[mid] < v) {
             return binarySearch(a, v, mid + 1, hi, left);
         } else if (a[mid] > v) {

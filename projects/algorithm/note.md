@@ -55,10 +55,13 @@
         }
 
         // lo + 1 = hi时，mid=lo，会导致mid~hi没有减小
-        int mid = lo + (hi - lo) / 2;
-        if (!left) {
+        int mid;
+        if (left) {
+          mid = lo + (hi - lo) / 2;
+        } else {
           mid = lo + (hi - lo + 1) / 2;
         }
+        
         if (a[mid] < v) {
             return binarySearch(a, v, mid + 1, hi, left);
         } else if (a[mid] > v) {
@@ -83,28 +86,42 @@
 
 ## 1.2 数据抽象
 > java 数据相关 <br>
-> 习题：一个字符串 s 是另一个字符串 t 的循环旋转 **TODO** <br>
+
+
+### 习题
+#### 1.判断一个字符串 s 是另一个字符串 t 的循环旋转
+`s.length() == t.length() && s.concat(s).indexOf(t) >=0`
 
 ## 1.3 栈和队列
 > 数据类型：Bag Queue Stack <br>
 > 可迭代集合 <br>
 
+### Bag
 `Bag` 包，不支持删除的集合
 
+### Queue
 `Queue` 队列
 
+### Stack
 `Stack` 栈
-- 算术表达式求值，Dijkstra's 2-stack algorithm **TODO**
 
+#### 算术表达式求值，Dijkstra's 2-stack algorithm
+用于完全括号的算术表达式求值 <br>
+1、将操作数推入操作数栈 <br>
+2、将操作符推入操作符栈 <br>
+3、忽略左括号 <br>
+4、遇到右括号时，弹出一个操作符，弹出所需数量的操作数，并将该操作符应用于这些操作数的结果压入操作数栈 <br>
+
+### 迭代
 `Iterable` 
 
-集合的实现
+### 集合的实现
 - 固定容量的数组
 - 可调整大小的数组
 - 链表
 
-问答 <br>
-为何无法创建泛型数组
+### 问题
+#### 为何无法创建泛型数组
 ```java
 public class ArrayStack<E> {
     private E[] es = new E[1]; // error 
