@@ -17,6 +17,12 @@
     <packaging>pom</packaging>
     <modules>
         <module>demo-spring-boot</module>
+        <module>acme</module>
+        <module>acme-spring-boot</module>
+        <module>acme-spring-boot-starter</module>
+        <module>spi-interface</module>
+        <module>spi-service-impl</module>
+        <module>spi-client</module>
     </modules>
 
     <properties>
