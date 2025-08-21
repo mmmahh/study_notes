@@ -3,6 +3,9 @@ package org.example.demo.spring.boot;
 
 import org.junit.jupiter.api.Test;
 
+import java.lang.annotation.*;
+import java.lang.reflect.TypeVariable;
+
 public class MainTest {
     enum A {
 
@@ -12,6 +15,8 @@ public class MainTest {
 
     }
 
+    @Target(ElementType.TYPE_PARAMETER)
+    @Retention(RetentionPolicy.RUNTIME)
     @interface C {
 
     }
@@ -31,5 +36,16 @@ public class MainTest {
 
 
         System.out.println();
+    }
+
+    private static class Test2<@C D extends A> {
+
+    }
+
+    @Test
+    public void test2() {
+        TypeVariable<Class<Test2>>[] typeParameters = Test2.class.getTypeParameters();
+        System.out.println();
+
     }
 }
